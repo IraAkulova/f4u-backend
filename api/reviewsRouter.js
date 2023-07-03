@@ -1,22 +1,14 @@
 const express = require('express');
-const router = express.Router();
+const reviewsRouter = express.Router();
 
-// const { get,
-//   getById,
-//   create,
-//   update,
-//   updateFavorite,
-//   remove} = require('../controllers/contacts');
-// const { isValidId } = require('../middlewares');
-// const auth = require('../middlewares/auth');
 const {validateBody} = require('../decorators');
-const { schemas } = require('../models/review');
+const { reviewSchema } = require('../models/review');
 
 const {get, create} = require('../controllers/reviewes')
 
-router.get('/', get);
+reviewsRouter.get('/', get);
 
-router.post('/', validateBody(schemas.reviewSchema), create);
+reviewsRouter.post('/', validateBody(reviewSchema), create);
 
 // contactsRouter.get('/', auth, get);
 
@@ -30,4 +22,4 @@ router.post('/', validateBody(schemas.reviewSchema), create);
 
 // contactsRouter.delete('/:id', auth, isValidId, remove);
 
-module.exports = router;
+module.exports = reviewsRouter;

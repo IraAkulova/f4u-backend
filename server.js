@@ -14,8 +14,9 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 
-const { router } = require("./api");
-app.use("/api/reviews", router);
+const { contactsRouter, reviewsRouter } = require("./api");
+app.use("/api/reviews", reviewsRouter);
+app.use("/api/contacts", contactsRouter);
 
 app.use((req, res) => {
     res.status(404).json({ message: "Not found" });
