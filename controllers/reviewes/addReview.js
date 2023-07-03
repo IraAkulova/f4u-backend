@@ -1,5 +1,5 @@
 const { Review } = require('../../models/review');
-const { HttpError } = require("../../helpers");
+const { HttpError, sendEmail } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 
 const create = async (req, res, next) => {
@@ -10,6 +10,13 @@ const create = async (req, res, next) => {
         throw HttpError(400, `Missing required name field`)
     }
     const result = await Review.create({ name, email, phone, comment })
+    const addedComment = {
+        to: email,
+        subject: 'User left a review',
+        html: `<p>${name} left a review: "${comment}". You can contact him by email ${email} or call ${phone}</p>`
+    };
+
+    await sendEmail(addedComment);
     res.status(201).json({
         status: 'success',
         code: 201,
