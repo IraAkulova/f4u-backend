@@ -11,7 +11,7 @@ const create = async (req, res, next) => {
     }
     const result = await Review.create({ name, email, phone, comment })
     const addedComment = {
-        to: email,
+        to: 'ira.akulova2019@gmail.com',
         subject: 'User left a review',
         html: `<p>${name} left a review: "${comment}". You can contact him by email ${email} or call ${phone}</p>`
     };
