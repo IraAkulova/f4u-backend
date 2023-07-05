@@ -11,7 +11,7 @@ const create = async (req, res, next) => {
     }
     const result = await Contact.create({ name, phone })
     const addedContact = {
-        to: 'ira.akulova2019@gmail.com',
+        to: 'bikeoffer90@gmail.com',
         subject: 'User asks for call back',
         html: `<p>${name} lasks for call back. You can contact him by ${phone}</p>`
     };
