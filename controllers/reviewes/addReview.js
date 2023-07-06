@@ -2,6 +2,8 @@ const { Review } = require('../../models/review');
 const { HttpError, sendEmail } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 
+// const EMAIL = 'bikeoffer90@gmail.com';
+
 const create = async (req, res, next) => {
     const { name, email, phone, comment } = req.body;
 
@@ -11,7 +13,7 @@ const create = async (req, res, next) => {
     }
     const result = await Review.create({ name, email, phone, comment })
     const addedComment = {
-        to: 'bikeoffer90@gmail.com',
+        to: 'ira.akulova2019@gmail.com',
         subject: 'User left a review',
         html: `<p>${name} left a review: "${comment}". You can contact him by email ${email} or call ${phone}</p>`
     };
