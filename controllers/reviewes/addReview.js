@@ -2,8 +2,10 @@ const { Review } = require('../../models/review');
 const { HttpError, sendEmail } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 const gravatar = require('gravatar');
+const { AvatarGenerator } = require('random-avatar-generator');
 
 // const EMAIL = 'bikeoffer90@gmail.com';
+const generator = new AvatarGenerator();
 
 const create = async (req, res, next) => {
     const { name, email, phone, comment } = req.body;
@@ -11,7 +13,8 @@ const create = async (req, res, next) => {
     if (error) {
         throw HttpError(400, `Missing required name field`)
     }
-    const avatarURL = gravatar.url(email, { d: 'robohash', s: '250'});
+    const avatarURL = generator.generateRandomAvatar();
+    // const avatarURL = gravatar.url(email, { d: 'robohash', s: '250'});
     const newReview = await Review.create({ ...req.body, avatarURL});
     // const newReview = await Review.create({ name, email, phone, comment, avatarURL });
         console.log(newReview)
