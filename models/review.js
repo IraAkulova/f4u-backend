@@ -21,6 +21,10 @@ const review = new Schema(
       type: String,
       required: [true, 'Leave your review'],
     },
+    avatarURL: {
+        type: String,
+        required: true,
+        },
   },
   { versionKey: false, timestamps: true }
 );

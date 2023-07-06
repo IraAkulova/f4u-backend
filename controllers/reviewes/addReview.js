@@ -12,7 +12,7 @@ const create = async (req, res, next) => {
         throw HttpError(400, `Missing required name field`)
     }
     const avatarURL = gravatar.url(email);
-    const newReview = await Review.create({ ...req.body, avatarURL, cat: true});
+    const newReview = await Review.create({ ...req.body, avatarURL});
     // const newReview = await Review.create({ name, email, phone, comment, avatarURL });
         console.log(newReview)
     
