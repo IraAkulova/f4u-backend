@@ -14,11 +14,8 @@ const create = async (req, res, next) => {
         throw HttpError(400, `Missing required name field`)
     }
     const avatarURL = generator.generateRandomAvatar();
-    // const avatarURL = gravatar.url(email, { d: 'robohash', s: '250'});
     const newReview = await Review.create({ ...req.body, avatarURL});
-    // const newReview = await Review.create({ name, email, phone, comment, avatarURL });
-        console.log(newReview)
-    
+
     const addedComment = {
         to: 'ira.akulova2019@gmail.com',
         subject: 'User left a review',
